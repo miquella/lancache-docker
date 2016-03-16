@@ -32,4 +32,4 @@ proxy_max_temp_file_size 40960m;
 #
 # ngx_cache_purge method:
 # * Triggers off the HTTP method PURGE
-proxy_cache_purge PURGE from all;
+#proxy_cache_purge PURGE from all;
