@@ -1,10 +1,15 @@
-FROM nginx
+FROM nginx:mainline-alpine
 
-RUN mkdir -p /etc/nginx/lancache /data/www/cache /data/www/logs \
- && chown -R nginx /data/www
+COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY etc/nginx/lancache/* /etc/nginx/lancache/
+COPY etc/nginx/sites-available/* /etc/nginx/sites-available/
+COPY etc/nginx/sites-enabled/* /etc/nginx/sites-enabled/
 
-COPY machines/lancache-single.conf /etc/nginx/nginx.conf
-COPY sites/lancache.conf /etc/nginx/conf.d/lancache.conf
-COPY lancache/* /etc/nginx/lancache/
+# Steam
+EXPOSE 8081
 
-EXPOSE 80 8081 8082 8083 8084 8085 8086 8087 8088 8089
+# Blizzard
+EXPOSE 8083
+
+# Origin
+EXPOSE 8085
